@@ -20,6 +20,14 @@ def get_post():
         response = "pass all required parameters"
     return response
 
+def get_post_tribe():
+    if request.method == 'POST' and 'userid' in request.json:
+        userid = request.json['userid']
+        response = post.get_post_tribe(userid)
+    else:
+        response = "pass all required parameters"
+    return response
+
 def get_comments():
     if request.method == 'POST' and 'postid' in request.json:
         postid = request.json['postid']

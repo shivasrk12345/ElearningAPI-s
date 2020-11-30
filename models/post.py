@@ -34,6 +34,30 @@ def get_post(userid):
 
     return result_json
 
+
+def get_post_tribe(userid):
+    db_connection = conn.create_connection()
+    db_cursor = db_connection.cursor()
+    #sql = 'select * from post where userid=%s', (userid,);
+    db_cursor.execute('select * from post where userid in (select userid from users where tribe_id in (select tribe_id from users where userid= %s))', (userid,));
+    rv = db_cursor.fetchall()
+    db_cursor.close()
+    db_connection.close()
+
+    if (rv):
+        payload = []
+        content = {}
+        for result in rv:
+            content = {'postid': result[0], 'posttext': result[2],'imageurl':result[3],'timestamp':result[4]}
+            payload.append(content)
+            content = {}
+        result_json =  jsonify(payload)
+    else:
+        result_json = "don't have post yet"
+
+    return result_json
+
+
 def add_comment(postid,commenttext,timestamp):
     db_connection = conn.create_connection()
     db_cursor = db_connection.cursor()

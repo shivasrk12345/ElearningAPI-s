@@ -1,10 +1,11 @@
 from flask import request
-
-
 from models import register
+
+"""User registration controller"""
 
 def register_form():
     if request.method == 'POST' and 'userid' in request.form and 'password' in request.form:
+        # get requested data from registration form
         userid = request.form['userid']
         password = request.form['password']
         name = request.form['name']

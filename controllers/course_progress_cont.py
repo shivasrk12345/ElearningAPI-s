@@ -1,6 +1,8 @@
 from flask import request, jsonify
 from models import course_progress
 
+"""Get Progress of each course for a user controller"""
+
 def get_course_progress():
     if request.method == 'POST':
         username = request.json['username']

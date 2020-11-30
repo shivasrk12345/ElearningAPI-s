@@ -1,6 +1,8 @@
 from flask import request, session
 from models import auth
 
+"""Learner Login and Logout controller"""
+
 def login_api():
     if request.method == 'POST' and 'userid' in request.form and 'password' in request.form:
         # Create variables for easy access
@@ -9,6 +11,7 @@ def login_api():
      response = auth.login(username, password)
     else:
      response= "All details Required"
+
     return response
 
 def logout_api():

@@ -1,6 +1,8 @@
 from flask import request, jsonify
 from models import course_assignment
 
+"""Get course assignment controller"""
+
 def get_course_assignment():
     if request.method == 'POST':
         coursename = request.json['coursename']
